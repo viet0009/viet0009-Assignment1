@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAsioqqE4IY0yPqNrHKiii0gAAAAACAAAAAAAQZgAAAAEAACAAAAB43PKCJRcYRV/fc6XLdiMa4tHTdASSjaGqJeJ/rPgdPwAAAAAOgAAAAAIAACAAAABI/TztXLKlyO8vYpwdDGhxbsEhddSwIsjOBu3QhgFR4IAAAABMfVgJXk6SKaktZELd2Pmr9Mb32TkYBxhgohDTmG0iU/nKu5hf352wHqYVqaglAyrj1DHr2ajA4NEL4Jugs/L0rKCdkhSvArTW/QRNs06PMQS18nbAkb+/NyiMx2BKdEG7eOe7gtBk49alqh+2yqM61k+2fHH08oTTgdRayl2v7UAAAADjGrAcQ4z9NnyE8ZpY1bWXkPtWGi+fS9Ln31O9cFaaS63+3Lr/LwkUGFriLqki6SB08Lg70KSD7Gzm2H2l8hLK</EncryptedPassword>
+    <History>True|2021-03-17T20:39:27.8889765Z;True|2021-03-17T16:30:07.7448086-04:00;True|2021-03-17T16:24:15.4841047-04:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:viet0009sqlserver.database.windows.net,1433%3bInitial Catalog=Viet0009%3bUser Id=Viet0009%40viet0009sqlserver%3bPassword=Giaheo1999</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="Lab4.Data.SchoolCommunityContext">
+      <Value>Data Source=tcp:viet0009sqlserver.database.windows.net,1433%3bInitial Catalog=Viet0009%3bUser Id=Viet0009%40viet0009sqlserver%3bPassword=Giaheo1999</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
