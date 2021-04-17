@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Lab4.Data;
 using Lab4.Models;
+using Lab4.ViewModels;
 
 namespace Lab4.Controllers
 {
@@ -20,9 +21,16 @@ namespace Lab4.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index(int? ID)
+        public ActionResult Index(int? id)
         {
-            return View(await _context.Students.ToListAsync());
+            return View(new StudentsViewModel
+            {
+                Students = _context.Students.ToList(),
+                Selected = id.HasValue ? _context.Students.Include(s => s.Membership)
+                .ThenInclude(m => m.Community)
+                .Where(s => s.ID == id.Value)
+                .First() : null
+            });
         }
 
         // GET: Students/Details/5
@@ -143,6 +151,34 @@ namespace Lab4.Controllers
             _context.Students.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+                public ActionResult EditMemberships(int id)
+        {
+            var student = _context.Students.Include(s => s.Membership).ThenInclude(m => m.Community).Where(c => c.ID == id).First();
+            var communities = _context.Communities.OrderBy(n => n.Title).ToList();
+            return View(new StudentMembershipsViewModel
+            {
+                Student = student,
+                Communities = communities
+            });
+        }
+
+        
+        [HttpGet]
+        public ActionResult AddMemberships(CommunityMembership membership)
+        {
+            _context.CommunityMemberships.Add(membership);
+            _context.SaveChanges();
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+       
+        [HttpGet]
+        public ActionResult RemoveMemberships(CommunityMembership membership)
+        {
+            _context.CommunityMemberships.Remove(membership);
+            _context.SaveChanges();
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         private bool StudentExists(int id)

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Lab4.Models
 {
@@ -21,5 +20,6 @@ namespace Lab4.Models
         [Column(TypeName = "money")]
         public decimal Budget { get; set; }
         public ICollection<CommunityMembership> Membership { get; set; }
+      //  public ICollection<Advertisement> Advertisements { get; set; }
     }
 }

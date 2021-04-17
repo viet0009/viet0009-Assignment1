@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Lab4.Models.Student>
+﻿@model Lab4.ViewModels.StudentsViewModel
+
+ 
 
 @{
     ViewData["Title"] = "Index";
@@ -13,19 +15,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                Last Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                First Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EnrollmentDate)
+                EnrollmentDate
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Students) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
@@ -37,8 +39,9 @@
                 @Html.DisplayFor(modelItem => item.EnrollmentDate)
             </td>
             <td>
-              
+                <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="EditMemberShips" asp-route-id="@item.ID">Edit MemberShips</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
@@ -46,3 +49,21 @@
 }
     </tbody>
 </table>
+
+@{ if(Model.Selected != null)
+            {
+        <h3>
+            Member of the following communities
+        </h3>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+            </tr>
+            @{ foreach (var item in Model.Selected.Membership)
+                {
+                    <tr><td>@item.Community.Title </td></tr>
+                }
+            }
+        </table>
+            }
+        }
